@@ -1,0 +1,4 @@
+folium==0.17.0
+pandas==2.2.2
+geopy==2.4.1
+
