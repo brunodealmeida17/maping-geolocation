@@ -48,7 +48,7 @@ def geocode_async(df, mapa):
                 ).add_to(mapa)
                 mapa.save('mapaenderecosvalidados.html')
 
-    # Definir o número máximo de threads (ajuste conforme necessário)
+    # Definir o número máximo de threads
     num_threads = 5
     with ThreadPoolExecutor(max_workers=num_threads) as executor:
         futures = [executor.submit(worker) for _ in range(num_threads)]
@@ -62,7 +62,7 @@ def main():
         df = pd.read_csv('ends_prova_bi.csv', encoding='latin1')
     except UnicodeDecodeError:
         print("Erro de decodificação. Tentando com outro encoding...")
-        df = pd.read_csv('/home/bruno/Python/santri/ends_prova_bi.csv', encoding='iso-8859-1')
+        df = pd.read_csv('ends_prova_bi.csv', encoding='iso-8859-1')
 
     df = df.drop_duplicates()
     df = df.apply(lambda x: x.str.strip().replace(r'\s+', ' ', regex=True) if x.dtype == 'object' else x)
